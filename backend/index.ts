@@ -6,6 +6,9 @@ import express from 'express';
 import expressWs from 'express-ws';
 import cors from 'cors';
 import cookieParser from "cookie-parser";
+import {usersRouter} from "./routes/users";
+import mongoose from "mongoose";
+import config from "./config";
 
 const port = 8008;
 const baseApp = express();
@@ -20,11 +23,19 @@ app.use(cors({
 app.use(cookieParser());
 app.use(cors());
 app.use(express.json());
+app.use(express.static('public'));
+app.use('/users', usersRouter);
 
 const run = async () => {
+    await mongoose.connect(config.db);
+
     app.listen(port, () => {
-        console.log('Server running on port ' + port);
+        console.log("Server running on port " + port)
     })
+
+    process.on('exit', () => {
+        mongoose.disconnect();
+    });
 }
 
 run().catch((e) => console.error(e));
