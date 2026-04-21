@@ -1,8 +1,11 @@
+import {Chat} from '@mui/icons-material'
 import './App.css'
 
 const App = () => {
     return (
-        <></>
+        <>
+            <Chat/>
+        </>
     )
 }
 
