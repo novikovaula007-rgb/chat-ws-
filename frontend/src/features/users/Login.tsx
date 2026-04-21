@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Alert, Avatar, Box, Button, Container, Grid, TextField, Typography} from "@mui/material";
+import {Alert, Avatar, Box, Button, Container, Grid, Typography} from "@mui/material";
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import {Link, useNavigate} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../app/hooks.ts";
@@ -7,6 +7,7 @@ import {login, selectLoginError, selectUser} from "./store/usersSlice.ts";
 import AuthButtons from "./components/AuthButtons.tsx";
 import type {LoginMutation} from "../../types";
 import {Navigate} from "react-router";
+import {AuthTextField} from "./components/AuthTextField.tsx";
 
 const Login = () => {
     const user = useAppSelector(selectUser);
@@ -19,7 +20,7 @@ const Login = () => {
     });
 
     if (user) {
-        return <Navigate to="/chat" replace />;
+        return <Navigate to="/chat" replace/>;
     }
 
     const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,10 +48,10 @@ const Login = () => {
                     alignItems: "center",
                 }}
             >
-                <Avatar sx={{m: 1, bgcolor: "secondary.main"}}>
+                <Avatar sx={{m: 1, bgcolor: "#7b3be1"}}>
                     <LockOpenIcon/>
                 </Avatar>
-                <Typography component="h1" variant="h5">
+                <Typography component="h1" variant="h5" sx={{color: "#fff"}}>
                     Sign in
                 </Typography>
 
@@ -61,7 +62,7 @@ const Login = () => {
                 <Box component="form" noValidate onSubmit={onSubmitHandler} sx={{mt: 3}}>
                     <Grid container spacing={2}>
                         <Grid size={12}>
-                            <TextField
+                            <AuthTextField
                                 autoComplete="given-name"
                                 name="username"
                                 required
@@ -71,21 +72,10 @@ const Login = () => {
                                 autoFocus
                                 value={form.username}
                                 onChange={onInputChange}
-                                sx={{
-                                    "& label.Mui-focused": {color: "secondary.main"},
-                                    "& .MuiOutlinedInput-root": {
-                                        "&:hover fieldset": {
-                                            borderColor: "secondary.main",
-                                        },
-                                        "&.Mui-focused fieldset": {
-                                            borderColor: "secondary.main",
-                                        },
-                                    },
-                                }}
                             />
                         </Grid>
                         <Grid size={12}>
-                            <TextField
+                            <AuthTextField
                                 required
                                 fullWidth
                                 name="password"
@@ -95,17 +85,6 @@ const Login = () => {
                                 autoComplete="new-password"
                                 value={form.password}
                                 onChange={onInputChange}
-                                sx={{
-                                    "& label.Mui-focused": {color: "secondary.main"},
-                                    "& .MuiOutlinedInput-root": {
-                                        "&:hover fieldset": {
-                                            borderColor: "secondary.main",
-                                        },
-                                        "&.Mui-focused fieldset": {
-                                            borderColor: "secondary.main",
-                                        },
-                                    },
-                                }}
                             />
                         </Grid>
                     </Grid>
@@ -113,7 +92,7 @@ const Login = () => {
                         type="submit"
                         fullWidth
                         variant="contained"
-                        sx={{mt: 3, mb: 1, backgroundColor: "secondary.main"}}
+                        sx={{mt: 3, mb: 1, backgroundColor: "#7b3be1"}}
                     >
                         Sign In
                     </Button>
@@ -123,7 +102,7 @@ const Login = () => {
                             <Typography component={Link} to="/register" sx={{
                                 textDecoration: "none",
                                 fontSize: "16px",
-                                color: "text.secondary",
+                                color: "rgba(255,255,255,0.46)",
                                 transition: "color 0.3s ease",
                                 "&:hover": {
                                     color: "#ccc",

@@ -1,6 +1,7 @@
 import {useRef, useState} from 'react';
-import {Button, FormHelperText, Grid, TextField} from '@mui/material';
+import {Button, FormHelperText, Grid} from '@mui/material';
 import React from "react";
+import {AuthTextField} from "../../features/users/components/AuthTextField.tsx";
 
 interface Props {
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -41,7 +42,7 @@ const FileInput: React.FC<Props> = ({onChange, name, label, error, helperText}) 
             />
             <Grid container direction="row" spacing={2} sx={{alignItems: "center"}}>
                 <Grid size={6}>
-                    <TextField
+                    <AuthTextField
                         disabled
                         label={label}
                         value={filename}
@@ -56,7 +57,7 @@ const FileInput: React.FC<Props> = ({onChange, name, label, error, helperText}) 
                 </Grid>
                 <Grid size={6}>
                     <Button variant="contained" onClick={activateInput}
-                            sx={{backgroundColor: "secondary.main"}}>Browse</Button>
+                            sx={{backgroundColor: "#7b3be1"}}>Browse</Button>
                 </Grid>
             </Grid>
         </>

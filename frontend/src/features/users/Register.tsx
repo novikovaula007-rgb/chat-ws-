@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Avatar, Box, Button, Container, Grid, TextField, Typography} from "@mui/material";
+import {Avatar, Box, Button, Container, Grid, Typography} from "@mui/material";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import {Link, useNavigate} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../app/hooks.ts";
@@ -9,6 +9,7 @@ import FileInput from "../../components/FileInput/FileInput.tsx";
 import {toast} from "react-toastify";
 import type {RegisterMutation} from "../../types";
 import {Navigate} from "react-router";
+import {AuthTextField} from "./components/AuthTextField.tsx";
 
 const Register = () => {
     const dispatch = useAppDispatch();
@@ -73,22 +74,22 @@ const Register = () => {
         <Container component="main" maxWidth="xs">
             <Box
                 sx={{
-                    marginTop: 3,
+                    marginTop: 5,
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
                 }}
             >
-                <Avatar sx={{m: 1, backgroundColor: "secondary.main"}}>
+                <Avatar sx={{m: 1, backgroundColor: "#7b3be1"}}>
                     <LockOutlinedIcon/>
                 </Avatar>
-                <Typography component="h1" variant="h5">
+                <Typography component="h1" variant="h5" sx={{color: "#fff"}}>
                     Sign up
                 </Typography>
                 <Box component="form" noValidate onSubmit={onSubmitHandler} sx={{mt: 3}}>
                     <Grid container spacing={2}>
                         <Grid size={12}>
-                            <TextField
+                            <AuthTextField
                                 autoComplete="given-name"
                                 name="username"
                                 required
@@ -101,21 +102,10 @@ const Register = () => {
                                 onChange={onInputChange}
                                 error={Boolean(getFieldError("username"))}
                                 helperText={getFieldError("username")}
-                                sx={{
-                                    '& label.Mui-focused': {color: 'secondary.main'},
-                                    '& .MuiOutlinedInput-root': {
-                                        '&:hover fieldset': {
-                                            borderColor: 'secondary.main',
-                                        },
-                                        '&.Mui-focused fieldset': {
-                                            borderColor: 'secondary.main',
-                                        },
-                                    },
-                                }}
                             />
                         </Grid>
                         <Grid size={12}>
-                            <TextField
+                            <AuthTextField
                                 name="displayName"
                                 required
                                 fullWidth
@@ -126,13 +116,13 @@ const Register = () => {
                                 value={form.displayName}
                                 onChange={onInputChange}
                                 sx={{
-                                    "& label.Mui-focused": {color: "secondary.main"},
+                                    "& label.Mui-focused": {color: "#7b3be1"},
                                     "& .MuiOutlinedInput-root": {
                                         "&:hover fieldset": {
-                                            borderColor: "secondary.main",
+                                            borderColor: "#7b3be1",
                                         },
                                         "&.Mui-focused fieldset": {
-                                            borderColor: "secondary.main",
+                                            borderColor: "#7b3be1",
                                         },
                                     },
                                 }}
@@ -144,7 +134,7 @@ const Register = () => {
                             onChange={fileInputChangeHandler}
                         />
                         <Grid size={12}>
-                            <TextField
+                            <AuthTextField
                                 required
                                 fullWidth
                                 name="password"
@@ -158,13 +148,13 @@ const Register = () => {
                                 error={Boolean(getFieldError("password"))}
                                 helperText={getFieldError("password")}
                                 sx={{
-                                    '& label.Mui-focused': {color: 'secondary.main'},
+                                    '& label.Mui-focused': {color: '#7b3be1'},
                                     '& .MuiOutlinedInput-root': {
                                         '&:hover fieldset': {
-                                            borderColor: 'secondary.main',
+                                            borderColor: '#7b3be1',
                                         },
                                         '&.Mui-focused fieldset': {
-                                            borderColor: 'secondary.main',
+                                            borderColor: '#7b3be1',
                                         },
                                     },
                                 }}
@@ -177,7 +167,7 @@ const Register = () => {
                         disabled={loadingForm}
                         loading={loadingForm}
                         variant="contained"
-                        sx={{mt: 3, mb: 1, backgroundColor: "secondary.main"}}
+                        sx={{mt: 3, mb: 1, backgroundColor: "#7b3be1"}}
                     >
                         Sign Up
                     </Button>
@@ -187,7 +177,7 @@ const Register = () => {
                             <Typography component={Link} to="/login" sx={{
                                 textDecoration: "none",
                                 fontSize: "16px",
-                                color: "text.secondary",
+                                color: "rgba(255,255,255,0.46)",
                                 transition: "color 0.3s ease",
                                 "&:hover": {
                                     color: "#ccc",
