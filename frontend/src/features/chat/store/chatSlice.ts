@@ -52,7 +52,5 @@ export const {
 
 export const selectMessages = (state: RootState) => state.chat.messages;
 export const selectOnlineUsers = (state: RootState) => state.chat.onlineUsers;
-export const selectIsConnected = (state: RootState) => state.chat.isConnected;
-
 
 export const chatReducer = chatSlice.reducer;

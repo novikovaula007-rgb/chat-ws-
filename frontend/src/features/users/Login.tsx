@@ -3,11 +3,13 @@ import {Alert, Avatar, Box, Button, Container, Grid, TextField, Typography} from
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import {Link, useNavigate} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../app/hooks.ts";
-import {login, selectLoginError} from "./store/usersSlice.ts";
+import {login, selectLoginError, selectUser} from "./store/usersSlice.ts";
 import AuthButtons from "./components/AuthButtons.tsx";
 import type {LoginMutation} from "../../types";
+import {Navigate} from "react-router";
 
 const Login = () => {
+    const user = useAppSelector(selectUser);
     const dispatch = useAppDispatch();
     const error = useAppSelector(selectLoginError);
     const navigate = useNavigate();
@@ -15,6 +17,10 @@ const Login = () => {
         username: '',
         password: '',
     });
+
+    if (user) {
+        return <Navigate to="/chat" replace />;
+    }
 
     const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
@@ -25,7 +31,7 @@ const Login = () => {
         e.preventDefault();
         try {
             await dispatch(login(form)).unwrap();
-            navigate('/');
+            navigate('/chat');
         } catch (e) {
             console.log(e)
         }

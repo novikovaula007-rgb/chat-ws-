@@ -85,6 +85,7 @@ export const createChatRouter = (wsInstance: Instance) => {
                                 _id: newMessage._id,
                                 text: newMessage.text,
                                 user: {
+                                    _id: user._id,
                                     displayName: user.displayName,
                                     avatar: user.avatar
                                 },

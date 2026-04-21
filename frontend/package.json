@@ -16,12 +16,17 @@
     "@mui/material": "^9.0.0",
     "@react-oauth/google": "^0.13.5",
     "@reduxjs/toolkit": "^2.11.2",
+    "@twallpaper/react": "^2.1.2",
     "axios": "^1.15.1",
     "dayjs": "^1.11.20",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-redux": "^9.2.0",
-    "react-toastify": "^11.1.0"
+    "react-router": "^7.14.1",
+    "react-router-dom": "^7.14.1",
+    "react-toastify": "^11.1.0",
+    "redux-persist": "^6.0.0",
+    "twallpaper": "^2.1.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",

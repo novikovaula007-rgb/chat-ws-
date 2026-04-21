@@ -3,15 +3,17 @@ import {Avatar, Box, Button, Container, Grid, TextField, Typography} from "@mui/
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import {Link, useNavigate} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../app/hooks.ts";
-import {register, selectRegisterError} from './store/usersSlice.ts';
+import {register, selectRegisterError, selectUser} from './store/usersSlice.ts';
 import AuthButtons from "./components/AuthButtons.tsx";
 import FileInput from "../../components/FileInput/FileInput.tsx";
 import {toast} from "react-toastify";
 import type {RegisterMutation} from "../../types";
+import {Navigate} from "react-router";
 
 const Register = () => {
     const dispatch = useAppDispatch();
     const error = useAppSelector(selectRegisterError);
+    const user = useAppSelector(selectUser);
     const navigate = useNavigate();
     const [form, setForm] = useState<RegisterMutation>({
         username: '',
@@ -19,6 +21,10 @@ const Register = () => {
         avatar: null,
         displayName: '',
     });
+
+    if (user) {
+        return <Navigate to="/chat" replace/>;
+    }
 
     const [loadingForm, setLoadingForm] = useState<boolean>(false);
 
@@ -38,7 +44,7 @@ const Register = () => {
             }
             setLoadingForm(true);
             await dispatch(register(form)).unwrap();
-            navigate('/');
+            navigate('/chat');
         } catch (e) {
             console.log(e)
         } finally {

@@ -1,0 +1,71 @@
+.chat-wrapper {
+    display: flex;
+    height: 100vh;
+    color: #fff;
+}
+
+.user-list-wrapper {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-main-area::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-main-area::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-main-area::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+.chat-main-area::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.message-bubble {
+    position: relative;
+    border-radius: 12px;
+    padding: 10px;
+    min-width: 100px;
+    max-width: 500px;
+    word-break: break-all;
+}
+
+.bubble-left {
+    background-color: #212121;
+    border-radius: 12px 12px 12px 0;
+}
+
+.bubble-right {
+    background-color: #7b3be1;
+    border-radius: 12px 12px 0 12px;
+}
+
+.message-bubble::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 15px;
+    height: 15px;
+}
+
+.bubble-left::before {
+    left: -7px;
+    z-index: -1;
+    background-color: #212121;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+.bubble-right::before {
+    right: -7px;
+    z-index: -1;
+    background-color: #7b3be1;
+    clip-path: polygon(0 0, 0 100%, 100% 100%);
+}
+
+
